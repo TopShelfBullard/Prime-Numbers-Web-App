@@ -3,6 +3,6 @@ class PrimeNumbersController < ApplicationController
   end
 
   def show
-    @primes = PrimeNumber.get_primes
+    @primes = PrimeNumber.get_primes.map{|number| NumberWords.to_english(number)}
   end
 end
