@@ -17,7 +17,7 @@ RSpec.describe NumberWords, :type => :model do
     expect(NumberWords.to_english(25)).to eq("twenty-five")
   end
 
-  it "can turn '50' into 'twenty-five'" do
+  it "can turn '50' into 'fifty'" do
     expect(NumberWords.to_english(50)).to eq("fifty")
   end
 
