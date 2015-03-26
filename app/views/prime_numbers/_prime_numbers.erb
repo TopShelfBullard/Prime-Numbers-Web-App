@@ -1,1 +1,6 @@
-<%= @primes.join(", ") %>
+<% primes_in_groups(@primes, 100).each do |number_group| %>
+    <div class="number_display">
+      <%= number_group %>
+    </div>
+    <hr>
+<% end %>
