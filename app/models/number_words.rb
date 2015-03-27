@@ -5,11 +5,11 @@ class NumberWords
 
   def self.to_english(number)
     number_string = "#{number}"
-    if number_string.length < 4
-      return self.send("length_of_#{number_string.length}", number_string).strip
-    else
-      return self.parse_thousands(number_string).strip
-    end
+    return self.send("length_of_#{number_string.length}", number_string).strip if number_string.length < 4
+    return self.length_greater_than_3(number_string, 3, "thousand").strip if number_string.length < 7
+    return self.length_greater_than_3(number_string, 6, "million").strip if number_string.length < 10
+    return self.length_greater_than_3(number_string, 9, "billion").strip if number_string.length < 13
+    return self.length_greater_than_3(number_string, 12, "trillion").strip
   end
 
   private
@@ -33,11 +33,11 @@ class NumberWords
     last_word.empty? ? "#{first_word}" : "#{first_word}-#{last_word}"
   end
 
-  def self.parse_thousands(number_string)
-    digits = number_string.length - 3
+  def self.length_greater_than_3(number_string, tail_length, place)
+    digits = number_string.length - tail_length
     first = self.send("length_of_#{digits}", "#{number_string.chars.first(digits).join}")
-    last = self.length_of_3(number_string.chars.last(3).join).strip
-    first.empty? ? last : "#{first} thousand #{last}"
+    last = self.to_english((number_string.chars.last(tail_length).join).strip.to_i)
+    first.empty? ? last : "#{first} #{place} #{last}"
   end
 
   def self.begins_with_zero(number_string)
