@@ -24,7 +24,7 @@ class NumberWords
 
   def self.length_of_3(number_string)
     return self.pass_it_down(number_string) if self.begins_with_zero(number_string)
-    "#{self.length_of_1(number_string.chars[0])} hundred #{self.length_of_2(number_string.last(number_string.length - 1))}".strip
+    "#{self.length_of_1(number_string.chars[0])} hundred #{self.length_of_2(number_string.chars.last(number_string.length - 1).join)}".strip
   end
 
   def self.hundreths_greater_than_19(number_string)
