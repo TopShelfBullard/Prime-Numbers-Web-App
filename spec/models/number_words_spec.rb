@@ -44,4 +44,12 @@ RSpec.describe NumberWords, :type => :model do
   it "can turn '9583' into 'nine thousand five hundred eighty-three'" do
     expect(NumberWords.to_english(9583)).to eq("nine thousand five hundred eighty-three")
   end
+
+  it "can turn '10503' into 'ten thousand five hundred three'" do
+    expect(NumberWords.to_english(10503)).to eq("ten thousand five hundred three")
+  end
+
+  it "can turn '999999' into 'nine hundred ninty-nine thousand nine hundred ninty-nine'" do
+    expect(NumberWords.to_english(999999)).to eq("nine hundred ninty-nine thousand nine hundred ninty-nine")
+  end
 end
